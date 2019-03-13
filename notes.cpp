@@ -21,13 +21,15 @@ class Name {
         operator int()const {return x;} // 'int()' operator overloading ,inline.
         virtual void virtual_function(); // Necessary when using pointers to 'Name' and 'derived'
         virtual int abstract_method() = 0; // Method to be implemented in derived classes. If this exists you cannot create a 'Name' object instance
-        
+        double operator()(double)const; // overloading the "()" operator - Functor
+
+
     private:
-        int member;
+        int member_;
         static int static_member; // shared across all instances
 }
 
-class derived : public Name { // Derived class, inherits from 'Name'
+class Derived : public Name { // Derived class, inherits from 'Name'
     public:
         void virtual_function(); // 
         int abstract_method() {
@@ -37,6 +39,11 @@ class derived : public Name { // Derived class, inherits from 'Name'
 }
 
 void operator<<=(const char *text, const Name& A); // Operator invoked by a 'const char *'
+
+std::ostream& operator<<(std::ostream& stream, const Name &obj){ //Overloading the stream operator
+	//code
+	return stream;
+}
 
 // Miscellaneous
 using namespace std;
