@@ -52,8 +52,24 @@ enum weekend {SAT, SUN}; // enumeration type declaration
 weekday day = SAT; // day is a variable of type weekend
 static int x; // Global lifetime even if local scope
 
-
-// In Source files
 int Class_name::static_member = 100; //static variable definition
 int x;
 double y = static_cast<double>(x);
+
+std::vector<class T> x;
+//x.push_back(element);
+//x.pop_pack();
+//x.size();
+//x[0];
+
+template<class T>
+T fun(T &a, T &b){
+	return (a>b?a:b);
+}
+
+template<class T>
+class Name {
+	T value;
+	public:
+	Name(val): value(val){};
+};
