@@ -1,0 +1,21 @@
+Circle with radius 2
+Rectangle with sides 2, 3
+Rectangle with sides 5, 5
+Rectangle with sides 15, 15
+Rectangle with sides 45, 45
+====== Colored shapes ======
+Rectangle with sides 2, 3
+ -- with white filling
+Rectangle with sides 2, 3
+ -- with red filling
+Rectangle with sides 2, 3
+ -- with red filling
+ -- with blue border
+====== Changed size ======
+Rectangle with sides 1, 1.5
+ -- with red filling
+ -- with blue border
+====== Changed colors ======
+Rectangle with sides 1, 1.5
+ -- with red filling
+ -- with blue border
