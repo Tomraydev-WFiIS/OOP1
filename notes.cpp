@@ -30,35 +30,43 @@ class Name {
 
 class Derived : public Name {  // Derived class, inherits from 'Name'
    public:
-    void virtual_function();  //
+    void virtual_function();  
     int abstract_method() {
         //implementation;
         return 1;
     }
 }
 
-void
-operator<<=(const char *text, const Name &A);  // Operator invoked by a 'const char *'
+// Virtual functions are binded at runtime 
+// Non-virtual functions are binded at compile time
+
+// Late binding(Runtime) is done in accordance with the content of pointer 
+// (i.e. location pointed to by pointer) an Early binding(Compile time) is done according to the type of pointer,
+
+// Miscellaneous
+////////////////////////////////////////////////////////////////////////////////
+
+void operator<<=(const char *text, const Name &A);  // Operator invoked by a 'const char *'
 
 std::ostream &operator<<(std::ostream &stream, const Name &obj) {  //Overloading the stream operator
     //code
     return stream;
 }
 
-// Miscellaneous
+////////////////////////////////////////////////////////////////////////////////
+
 using namespace std;
 
-enum weekend { SAT,
-               SUN };  // enumeration type declaration
-weekday day = SAT;     // day is a variable of type weekend
+enum weekend { SAT, SUN };	// enumeration type declaration
+weekday day = SAT;     		// day is a variable of type weekend
+////////////////////////////////////////////////////////////////////////////////
 static int x;          // Global lifetime even if local scope
-
 int Class_name::static_member = 100;  //static variable definition
+////////////////////////////////////////////////////////////////////////////////
 int x;
 double y = static_cast<double>(x);
-
 // TEMPLATES
-
+////////////////////////////////////////////////////////////////////////////////
 std::vector<class T> x;
 //x.push_back(element);
 //x.pop_pack();
@@ -79,6 +87,7 @@ class Name {
 };
 
 // SMART POINTER
+////////////////////////////////////////////////////////////////////////////////
 void UseSmartPointer() {
     // Declare a smart pointer on stack and pass it the raw pointer.
     unique_ptr<Song> song2(new Song(L"Nothing on You", L"Bruno Mars"));
@@ -86,3 +95,18 @@ void UseSmartPointer() {
     wstring s = song2->duration_;
     //...
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// override - checks if the function that we are declaring overrides the virtual method from the base class.
+// final - do not override/inherit from
+struct A {
+	virtual void foo();
+};
+struct B final : A {	// B is a final struct that inherits from A
+	void foo()final; //B::foo is overridden and is the final override.
+	void foo()const override // error B::foo does not override A::foo
+	void bar()final; // error non-virtual function cannot be overrridden.
+};
+
+
+
