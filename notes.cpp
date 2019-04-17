@@ -108,5 +108,50 @@ struct B final : A {	// B is a final struct that inherits from A
 	void bar()final; // error non-virtual function cannot be overrridden.
 };
 
+//typeid
+////////////////////////////////////////////////////////////////////////////////
+#include <typeinfo>
+Klasa obj;
+cout << typeid(obj).name() << endl;
+if(typeid(obj) == typeid(Klasa)) // do something
 
+// Dreaded diamond - solution = virtual inheritance
+////////////////////////////////////////////////////////////////////////////////
 
+class srodek_trans
+{...};
+class samochod: virtual public srodek_trans
+{...};
+class lodz: virtual public srodek_trans
+{...};
+class amfibia: public samochod, public lodz // Due to virtual inheritance srodek_trans members will not be duplicated.
+{...};
+/*
+		srodek_trans
+                /        \
+	   samochod	 lodz
+                \       /
+		 amfibia
+*/
+
+//Exceptions - standard expections
+////////////////////////////////////////////////////////////////////////////////
+#include <exception>
+using namespace std;
+
+struct MyException : public exception {
+   const char * what () const throw () { // throw() === noexcept
+      return "C++ Exception";
+   }
+};
+ 
+int main() {
+   try {
+      throw MyException();
+   } catch(MyException& e) {
+      std::cout << "MyException caught" << std::endl;
+      std::cout << e.what() << std::endl;
+   } catch(std::exception& e) {
+      //Other errors
+   }
+}
