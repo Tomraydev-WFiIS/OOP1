@@ -85,6 +85,9 @@ class Name {
    public:
     Name(val) : value(val){};
 };
+//template class member function definition
+template<class T>
+typ_zwaracany nazwa_sz_klasy<T>::nazwa_funkcji(args) {/*...*/}
 
 // SMART POINTER
 ////////////////////////////////////////////////////////////////////////////////
@@ -155,3 +158,92 @@ int main() {
       //Other errors
    }
 }
+
+////// More Templates
+////////////////////////////////////////////////////////////////////////////////
+
+//szablon funkcji, który jako argument przyjmuje obiekt klasy, ale powstały na podstawie typ szablonu funkcji
+template<typename T>
+ostream& operator<<(ostream &o, klasa<T>& K);
+
+//Obiekt klasy szablonowej będący składnikiem innej klasy szablonowej
+template<typename T> class K1
+	{...};
+
+template<typename T> class K2
+{
+	K1<int> a;
+	K1<T> b;
+};
+//Definicja składnika statycznego - deklaracja oczywiście w ciele klasy: (static int a);
+template<typename T> int K<typ>::a;
+template<typename T> K<T>* K<typ>::a;
+
+//Używanie Typedef z szablonami
+template<typename T, unsigned short a,double (*ptr)(double, double)> class
+K{...};
+
+K<std::string, 10, fun> a;
+typedef K<std::string, 10, fun> Kstr10Fun; //brzydkie :/
+Kstr10Fun b;
+
+
+//Specjalizowane wersje klasy szablonowej
+template <>
+class K<char *> {
+   public:
+    void print();
+};
+template <>
+class K<std::string> {
+   public:
+    void print();
+};
+
+//Częściowa specjalizacja
+template <typename T>
+class K<T &> {
+};
+
+//Specjalizacja dla typów wskaźnikowych
+template <>
+class K<void *> {
+};
+
+//Parametry domyślne
+template <typename T1, typename T2 = int>
+class A;
+
+template <class T, class Allocator = std::allocator<T>>
+class vector;
+
+//Zwykła klasa odziedzicza klasę szablonową
+template <typename T>
+class Box {
+   public:
+    T box;
+};
+
+class BoxFloatOpis : public Box<float> {
+    float square;
+};
+
+//Szablon klas odziedziczony przez inny szablon klas
+template <typename T>
+class Box {
+    T mock;
+};
+
+template <typename T>
+class BoxOpis : public Box<T> {
+    T mock;
+};
+
+template <typename T1, typename T2>
+class BetterBox : public Box<T2> {
+    T1 mock;
+};
+
+//Szablonowe parametry szablonów
+template <typename T, template <typename ElemType, typename AllocType> class Cont = std::deque>
+class stack {};

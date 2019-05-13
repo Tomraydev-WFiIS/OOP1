@@ -1,12 +1,12 @@
 #pragma once
-#include "Array.h"
 #include <iostream>
 #include <string>
+#include "Array.h"
 
 //Prints an array
-template<class T>
-void print(T& tab, const int size){
-    for(int i = 0; i < size; i++){
+template <class T>
+void print(T& tab, const int size) {
+    for (int i = 0; i < size; i++) {
         std::cout << tab[i] << " ";
     }
     std::cout << std::endl;
@@ -14,19 +14,19 @@ void print(T& tab, const int size){
 }
 
 //comparator template
-template<class T>
-bool compare(T& a, T& b){
-    return (a>b)?(1):(0);
+template <class T>
+bool compare(T& a, T& b) {
+    return (a > b) ? (1) : (0);
 }
 
 //comparator specialized for strings (compare by length)
-bool compare(std::string& a, std::string& b){
-    return (a.length() > b.length() )?(1):(0);
+bool compare(std::string& a, std::string& b) {
+    return (a.length() > b.length()) ? (1) : (0);
 }
 
 //swapper template
-template<class T>
-void swap_values(T& a, T& b){
+template <class T>
+void swap_values(T& a, T& b) {
     T tmp = a;
     a = b;
     b = tmp;
@@ -34,30 +34,31 @@ void swap_values(T& a, T& b){
 }
 
 //bubble sort in place array of type T
-template<class T>
-void bubble_sort(T& tab, const int size){
-    for (int i = 0; i < size; i++ ){
-        for (int j = i+1; j < size; ++j ){
-			if (compare(tab[i], tab[j]) ){
+template <class T>
+void bubble_sort(T& tab, const int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = i + 1; j < size; ++j) {
+            if (compare(tab[i], tab[j])) {
                 swap_values(tab[i], tab[j]);
             }
         }
-    }	
+    }
 }
 
 //Calculates the factorial of a given integer
-int getFactorial(int val){
+int getFactorial(int val) {
     int result = 1;
-    for(int i = 1; i <= val; i++ ){
+    for (int i = 1; i <= val; i++) {
         result = result * i;
     }
     return result;
 }
 
+//class specialization
 template <int T>
-class factorial{
-    public:
-        static int value;
+class factorial {
+   public:
+    static int value;
 };
 
 template <int T>
