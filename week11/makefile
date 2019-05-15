@@ -1,25 +1,35 @@
-CXX = g++
-CXXFLAGS = -Wall -g -pedantic
-NAME = program
-OBJS = . . . . . . . . . .
+CXX=g++
+CXXFLAGS=-Wall -std=c++11
 
+OUTPUT_FILE=w
+MAIN=lab11
+LIB01=PyArray
+LIB02=myerror
 
-all: $(NAME)
+$(OUTPUT_FILE): $(MAIN).o $(LIB01).o $(LIB02).o 
+	$(CXX) $(CXXFLAGS) -o $(OUTPUT_FILE) $(MAIN).o $(LIB01).o $(LIB02).o
+	make clean
+	make run
 
-# Linking, $@ = left side :  $^ = right side, $< = first dependency
-$(NAME): $(OBJS)
-	$(CXX) $^ -o $@
+$(MAIN).o: 
+	$(CXX) -w -c $(MAIN).cpp $(LIB01).h $(LIB02).h
 
-# Compiling source files to object files
-. . . . . . . . . . . 
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(LIB01).o:
+	$(CXX) -w -c $(LIB01).cpp $(LIB01).h
 
-# The following are commands not files
-.PHONY: all clean run
+$(LIB02).o:
+	$(CXX) -w -c $(LIB02).cpp $(LIB02).h
+
 
 clean:
-	rm *.o $(NAME)
+	rm -f *.o
+	rm -f *.gch
+	#rm $(OUTPUT_FILE)#
+
+mem:
+	valgrind --leak-check=full ./w
 
 run:
-	./$(NAME)
+	./$(OUTPUT_FILE)
 
+.PHONY: clean run
