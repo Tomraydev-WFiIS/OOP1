@@ -1,0 +1,14 @@
+DynArray<int> = {"0","1","4","9","16"}
+DynArray<int>[0] = 10
+DynArray<std::string> = {"Anna","Elsa","Olaf","Zen"}
+	Before: Anna
+	After : Anna Ice
+	Before: Elsa
+	After : Elsa Ice
+	Before: Olaf
+	After : Olaf Ice
+	Before: Zen
+	After : Zen Ice
+DynArray<std::string> = {"Anna Ice","Elsa Ice","Olaf Ice","Zen Ice"}
+DynArray<int> = {"10","1","4","9","16"}
+
