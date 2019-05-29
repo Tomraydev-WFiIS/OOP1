@@ -67,18 +67,18 @@ int x;
 double y = static_cast<double>(x);
 // TEMPLATES
 ////////////////////////////////////////////////////////////////////////////////
-std::vector<class T> x;
+std::vector<typename T> x;
 //x.push_back(element);
 //x.pop_pack();
 //x.size();
 //x[0];
 
-template <class T>
+template <typename T>
 T fun(T &a, T &b) {
     return (a > b ? a : b);
 }
 
-template <class T>
+template <typename T>
 class Name {
     T value;
 
@@ -86,7 +86,7 @@ class Name {
     Name(val) : value(val){};
 };
 //template class member function definition
-template<class T>
+template<typename T>
 typ_zwaracany nazwa_sz_klasy<T>::nazwa_funkcji(args) {/*...*/}
 
 // SMART POINTER
